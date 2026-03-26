@@ -11,9 +11,19 @@ from datetime import datetime
 
 # --- 1. CORE ENGINE CONFIGURATION ---
 st.set_page_config(page_title="LSS Master Consultant", layout="wide", page_icon="🏥")
-client = OpenAI(base_url="http://127.0.0.1:1234/v1", api_key="lm-studio")
 
-# --- 2. GLOBAL STATE MANAGEMENT ---
+# --- 2. AI CLIENT SETUP (CLOUD SECURE) ---
+try:
+    # This looks for the secret key you saved in the Streamlit Dashboard
+    api_key = st.secrets["OPENAI_API_KEY"]
+    client = OpenAI(api_key=api_key)
+    AI_MODEL = "gpt-3.5-turbo" 
+except Exception:
+    # Fallback to local LM Studio if secrets aren't set up
+    client = OpenAI(base_url="http://127.0.0.1:1234/v1", api_key="lm-studio")
+    AI_MODEL = "model-identifier"
+
+# --- 3. GLOBAL STATE MANAGEMENT ---
 state_defaults = {
     "project_title": "Process Improvement Initiative",
     "charter": {"bus_case": "", "problem": "", "goal": "", "scope": "", "out_of_scope": "", "financials": ""},
@@ -26,6 +36,7 @@ state_defaults = {
     "verified_causes": [], 
     "process_steps": [], 
     "facility_name": "City General Hospital",
+    "dept_name": "ER",
     "project_status": "Green",
     "last_updated": datetime.now().strftime("%Y-%m-%d %H:%M"),
     "ai_recommendations": {"charter": "", "measure": "", "analyze": "", "improve": "", "control": ""}
@@ -35,7 +46,7 @@ for key, val in state_defaults.items():
     if key not in st.session_state:
         st.session_state[key] = val
 
-# --- 3. CORE ANALYTICS & VISUALIZATION ---
+# --- 4. CORE ANALYTICS & VISUALIZATION ---
 
 def generate_flow_diag(steps, title):
     dot = graphviz.Digraph(comment=title)
@@ -74,26 +85,23 @@ def render_fishbone(fishbone_data, problem):
 
 def get_ai_consultant_advice(section_name, context_data):
     try:
-        models = client.models.list()
-        active_model = models.data[0].id if models.data else "model-identifier"
         system_prompt = (
             "You are a Senior Lean Six Sigma Master Black Belt Consultant specializing in Healthcare. "
             "Critically analyze the provided data for waste, risk, and ROI. Reference specific user data."
         )
         user_msg = f"Review this {section_name} data: {context_data}. Provide 3-4 strategic recommendations."
         resp = client.chat.completions.create(
-            model=active_model,
+            model=AI_MODEL,
             messages=[{"role": "system", "content": system_prompt}, {"role": "user", "content": user_msg}]
         )
         return resp.choices[0].message.content.strip()
     except Exception as e:
         return f"AI connection error: {str(e)}"
 
-# --- 4. SIDEBAR (Restored Project Pulse) ---
+# --- 5. SIDEBAR ---
 with st.sidebar:
     st.title("💼 Consulting Suite")
     
-    # RESTORED: Project Pulse Status logic from Image_0fa446
     st.subheader("🚦 Project Pulse")
     status_map = {"Green": "🟢 On Track", "Amber": "🟡 Delayed / Flagged", "Red": "🔴 At Risk / Critical"}
     st.session_state.project_status = st.selectbox(
@@ -103,7 +111,6 @@ with st.sidebar:
         index=list(status_map.keys()).index(st.session_state.project_status)
     )
     
-    # Status messaging based on selection
     if st.session_state.project_status == "Green":
         st.success("Project is meeting all milestones.")
     elif st.session_state.project_status == "Amber":
@@ -113,7 +120,8 @@ with st.sidebar:
 
     st.markdown("---")
     st.session_state.facility_name = st.text_input("Healthcare Facility:", st.session_state.facility_name)
-    st.session_state.dept_name = st.selectbox("Department:", ["ER", "Radiology", "Pharmacy", "OR", "Lab", "Inpatient"])
+    st.session_state.dept_name = st.selectbox("Department:", ["ER", "Radiology", "Pharmacy", "OR", "Lab", "Inpatient"],
+                                              index=["ER", "Radiology", "Pharmacy", "OR", "Lab", "Inpatient"].index(st.session_state.dept_name))
     
     st.markdown("---")
     load_project = st.file_uploader("Load Project Archive (.json)", type=["json"])
@@ -131,7 +139,7 @@ with st.sidebar:
         st.session_state.clear()
         st.rerun()
 
-# --- 5. MAIN INTERFACE ---
+# --- 6. MAIN INTERFACE ---
 st.title(f"🏥 {st.session_state.facility_name}: Lean Six Sigma Engine")
 st.subheader(f"Project: {st.session_state.project_title}")
 
@@ -194,7 +202,6 @@ with tabs[1]:
 with tabs[2]:
     st.header("Phase 3 & 4: Root Cause & Optimization")
     
-    # Fishbone Section
     st.subheader("Fishbone (Ishikawa) Diagram")
     f_cols = st.columns(3)
     for i, cat in enumerate(st.session_state.fishbone.keys()):
@@ -207,7 +214,6 @@ with tabs[2]:
 
     st.markdown("---")
     
-    # VSM & TIMWOOD Section
     st.subheader("Value Stream Map & Waste Identification")
     with st.container(border=True):
         c1, c2, c3, c4 = st.columns([2, 1, 1, 2])
@@ -223,7 +229,6 @@ with tabs[2]:
     if st.session_state.process_steps:
         st.graphviz_chart(generate_flow_diag(st.session_state.process_steps, "Current State Flow"))
         
-        # WASTE SUMMARY TABLE
         st.subheader("Waste Analysis Summary")
         w_df = pd.DataFrame(st.session_state.process_steps)
         summary = w_df.groupby("waste_type")[["time", "wait"]].sum()
