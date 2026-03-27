@@ -96,7 +96,8 @@ def get_ai_consultant_advice(section_name, context_data):
         )
         return resp.choices[0].message.content.strip()
     except Exception as e:
-        return f"AI connection error: {str(e)}"
+        # UPDATED ERROR REPORTING
+        return f"🚨 AI Connection Error: {str(e)}"
 
 # --- 5. SIDEBAR ---
 with st.sidebar:
