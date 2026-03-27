@@ -96,7 +96,6 @@ def get_ai_consultant_advice(section_name, context_data):
         )
         return resp.choices[0].message.content.strip()
     except Exception as e:
-        # UPDATED ERROR REPORTING
         return f"🚨 AI Connection Error: {str(e)}"
 
 # --- 5. SIDEBAR ---
@@ -112,13 +111,6 @@ with st.sidebar:
         index=list(status_map.keys()).index(st.session_state.project_status)
     )
     
-    if st.session_state.project_status == "Green":
-        st.success("Project is meeting all milestones.")
-    elif st.session_state.project_status == "Amber":
-        st.warning("Project requires attention.")
-    else:
-        st.error("Critical bottlenecks detected.")
-
     st.markdown("---")
     st.session_state.facility_name = st.text_input("Healthcare Facility:", st.session_state.facility_name)
     st.session_state.dept_name = st.selectbox("Department:", ["ER", "Radiology", "Pharmacy", "OR", "Lab", "Inpatient"],
@@ -183,10 +175,14 @@ with tabs[0]:
         st.session_state.sipoc[key] = sc[i].text_area(key.capitalize(), st.session_state.sipoc[key], key=f"sipoc_{key}")
 
     if st.button("🧙‍♂️ Get AI Consultant Draft (Define)"):
-        st.session_state.ai_recommendations["charter"] = get_ai_consultant_advice("Charter & SIPOC", {"charter": st.session_state.charter, "sipoc": st.session_state.sipoc})
+        with st.spinner("Analyzing Charter..."):
+            st.session_state.ai_recommendations["charter"] = get_ai_consultant_advice("Charter & SIPOC", {"charter": st.session_state.charter, "sipoc": st.session_state.sipoc})
         st.rerun()
+    
     if st.session_state.ai_recommendations["charter"]:
-        st.info(st.session_state.ai_recommendations["charter"])
+        with st.container(border=True):
+            st.subheader("💡 AI Consultant Recommendation")
+            st.info(st.session_state.ai_recommendations["charter"])
 
 # --- TAB 2: MEASURE ---
 with tabs[1]:
@@ -196,8 +192,14 @@ with tabs[1]:
         df = pd.read_csv(u_file) if u_file.name.endswith('.csv') else pd.read_excel(u_file)
         st.dataframe(df.head())
         if st.button("🧙‍♂️ Get AI Data Advice"):
-            st.session_state.ai_recommendations["measure"] = get_ai_consultant_advice("Baseline Data", df.describe().to_json())
+            with st.spinner("Analyzing Data Trends..."):
+                st.session_state.ai_recommendations["measure"] = get_ai_consultant_advice("Baseline Data", df.describe().to_json())
             st.rerun()
+            
+    if st.session_state.ai_recommendations["measure"]:
+        with st.container(border=True):
+            st.subheader("💡 AI Consultant Analysis")
+            st.info(st.session_state.ai_recommendations["measure"])
 
 # --- TAB 3: ANALYZE/IMPROVE ---
 with tabs[2]:
@@ -236,8 +238,14 @@ with tabs[2]:
         st.table(summary)
 
     if st.button("🧙‍♂️ Get AI Optimization Advice"):
-        st.session_state.ai_recommendations["analyze"] = get_ai_consultant_advice("Fishbone & VSM Waste", {"fishbone": st.session_state.fishbone, "vsm": st.session_state.process_steps})
+        with st.spinner("Generating Strategic Optimization..."):
+            st.session_state.ai_recommendations["analyze"] = get_ai_consultant_advice("Fishbone & VSM Waste", {"fishbone": st.session_state.fishbone, "vsm": st.session_state.process_steps})
         st.rerun()
+        
+    if st.session_state.ai_recommendations["analyze"]:
+        with st.container(border=True):
+            st.subheader("💡 AI Consultant Optimization")
+            st.info(st.session_state.ai_recommendations["analyze"])
 
 # --- TAB 5: SUMMARY ---
 with tabs[4]:
