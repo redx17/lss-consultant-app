@@ -13,9 +13,9 @@ from datetime import datetime
 # --- 1. CORE ENGINE CONFIGURATION ---
 st.set_page_config(page_title="LSS Master Consultant", layout="wide", page_icon="🏥")
 
-# --- 2. AI CLIENT SETUP ---
+# --- 2. AI CLIENT SETUP (Updated to hide config) ---
 if "local_model_id" not in st.session_state:
-    # UPDATED: Common Qwen 2.5 format for LM Studio
+    # This remains the internal reference for the model
     st.session_state.local_model_id = "qwen2.5-coder-7b-instruct"
 
 try:
@@ -105,14 +105,10 @@ def get_ai_consultant_advice(section_name, context_data):
     except Exception as e:
         return f"🚨 AI Connection Error: {str(e)}"
 
-# --- 5. SIDEBAR ---
+# --- 5. SIDEBAR (Removed AI Config Info) ---
 with st.sidebar:
     st.title("💼 Consulting Suite")
     
-    with st.expander("⚙️ AI Model Configuration", expanded=True):
-        st.warning("Match this ID to the name in LM Studio's top bar.")
-        st.session_state.local_model_id = st.text_input("Local Model ID:", value=st.session_state.local_model_id)
-
     st.subheader("🚦 Project Pulse")
     status_map = {"Green": "🟢 On Track", "Amber": "🟡 Delayed / Flagged", "Red": "🔴 At Risk / Critical"}
     st.session_state.project_status = st.selectbox(
