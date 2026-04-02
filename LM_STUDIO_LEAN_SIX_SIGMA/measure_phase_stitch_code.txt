@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@300;400;500;600&amp;family=Sometype+Mono&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "surface-dim": "#dbd6fb",
+                "on-tertiary-fixed-variant": "#594400",
+                "on-surface-variant": "#564052",
+                "surface-container-lowest": "#ffffff",
+                "primary-container": "#ff00ff",
+                "surface-variant": "#e3dfff",
+                "on-secondary-fixed": "#001a42",
+                "on-primary-container": "#510051",
+                "surface-container-highest": "#e3dfff",
+                "background": "#fcf8ff",
+                "on-primary-fixed-variant": "#810081",
+                "secondary-fixed-dim": "#aec6ff",
+                "primary": "#a900a9",
+                "surface-tint": "#a900a9",
+                "primary-fixed": "#ffd7f5",
+                "on-secondary": "#ffffff",
+                "surface-bright": "#fcf8ff",
+                "outline": "#897083",
+                "tertiary-container": "#b58c00",
+                "primary-fixed-dim": "#ffabf3",
+                "outline-variant": "#dcbed4",
+                "secondary-container": "#006fee",
+                "surface-container-low": "#f6f1ff",
+                "secondary": "#0058bf",
+                "secondary-fixed": "#d8e2ff",
+                "on-tertiary-fixed": "#251a00",
+                "tertiary-fixed": "#ffdf96",
+                "on-secondary-container": "#fefcff",
+                "on-tertiary-container": "#372900",
+                "tertiary": "#765a00",
+                "on-primary-fixed": "#380038",
+                "on-primary": "#ffffff",
+                "on-error": "#ffffff",
+                "surface-container-high": "#eae5ff",
+                "surface-container": "#f0ebff",
+                "on-tertiary": "#ffffff",
+                "on-error-container": "#93000a",
+                "surface": "#fcf8ff",
+                "on-surface": "#1a1834",
+                "error-container": "#ffdad6",
+                "inverse-surface": "#2f2d4a",
+                "on-secondary-fixed-variant": "#004396",
+                "error": "#ba1a1a",
+                "inverse-primary": "#ffabf3",
+                "inverse-on-surface": "#f3eeff",
+                "tertiary-fixed-dim": "#f6bf00",
+                "on-background": "#1a1834"
+              },
+              fontFamily: {
+                "headline": ["Plus Jakarta Sans"],
+                "body": ["Inter"],
+                "label": ["Inter"],
+                "mono": ["Sometype Mono"]
+              },
+              borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            },
+          },
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+        }
+        .kinetic-gradient {
+            background: linear-gradient(to right, #a900a9 0%, #006fee 100%);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background font-body text-on-surface antialiased">
+<!-- SideNavBar (Authority: JSON) -->
+<aside class="fixed left-0 top-0 h-full z-40 h-screen w-64 flex flex-col border-r-0 bg-[#f6f1ff] dark:bg-slate-900">
+<div class="p-6">
+<h1 class="text-lg font-bold text-[#1a1834] dark:text-[#ffffff] font-headline">Project Workspace</h1>
+<p class="text-xs opacity-60 font-body">Lean Six Sigma Dashboard</p>
+</div>
+<nav class="flex-1 px-4 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-[#1a1834] dark:text-slate-400 opacity-80 hover:bg-[#f0ebff] transition-colors duration-150 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="text-sm font-medium">Project Pulse</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-[#1a1834] dark:text-slate-400 opacity-80 hover:bg-[#f0ebff] transition-colors duration-150 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="factory">factory</span>
+<span class="text-sm font-medium">Facility</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-[#1a1834] dark:text-slate-400 opacity-80 hover:bg-[#f0ebff] transition-colors duration-150 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="domain">domain</span>
+<span class="text-sm font-medium">Department</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-[#1a1834] dark:text-slate-400 opacity-80 hover:bg-[#f0ebff] transition-colors duration-150 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="save">save</span>
+<span class="text-sm font-medium">Load/Save</span>
+</a>
+</nav>
+<div class="p-4 space-y-2 mb-4">
+<button class="w-full kinetic-gradient text-white py-2.5 rounded-lg text-sm font-semibold flex items-center justify-center gap-2 shadow-lg shadow-primary/20 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-sm" data-icon="smart_toy">smart_toy</span>
+                AI Consultant Chat
+            </button>
+</div>
+<div class="mt-auto p-4 border-t border-outline-variant/10 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-[#1a1834] dark:text-slate-400 opacity-80 hover:bg-[#f0ebff] transition-colors duration-150 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="summarize">summarize</span>
+<span class="text-sm font-medium">Executive Summary</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-[#1a1834] dark:text-slate-400 opacity-80 hover:bg-[#f0ebff] transition-colors duration-150 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+</div>
+</aside>
+<!-- TopNavBar (Authority: JSON) -->
+<header class="fixed top-0 right-0 left-64 h-14 bg-[#fcf8ff]/80 dark:bg-slate-950/80 backdrop-blur-md flex justify-between items-center px-6 z-50 border-b-[0.5px] border-[#dcbed4]/15">
+<div class="flex items-center gap-8">
+<span class="bg-gradient-to-r from-[#a900a9] to-[#006fee] bg-clip-text text-transparent font-black text-xl font-headline">Six Sigma Kinetic</span>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-slate-400 text-sm" data-icon="search">search</span>
+<input class="bg-surface-container-low border-none rounded-full pl-9 pr-4 py-1.5 text-xs w-64 focus:ring-1 focus:ring-primary" placeholder="Search datasets..." type="text"/>
+</div>
+</div>
+<nav class="flex items-center gap-6">
+<a class="text-slate-600 dark:text-slate-400 hover:text-[#a900a9] text-sm font-medium transition-all duration-300" href="#">Define</a>
+<a class="text-[#a900a9] dark:text-[#f0ebff] border-b-2 border-[#a900a9] font-bold pb-1 text-sm transition-all duration-300" href="#">Measure</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-[#a900a9] text-sm font-medium transition-all duration-300" href="#">Analyze</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-[#a900a9] text-sm font-medium transition-all duration-300" href="#">Improve</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-slate-500 hover:text-primary transition-colors" data-icon="notifications">notifications</button>
+<button class="material-symbols-outlined text-slate-500 hover:text-primary transition-colors" data-icon="help_outline">help_outline</button>
+<div class="h-8 w-8 rounded-full bg-surface-container-highest overflow-hidden">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="professional portrait of a project manager with short hair and glasses wearing a neutral suit" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQoLDcI1YfPTMz55ZZ-HeAs3MbDMo-VnXhguGaJzbroW9IJ_-EqKKhS-D_GCq0GA72ClbYbnTzXNaVumBhXETU9JoY_vxPctgr2ffftJb-mnDawBJDaCLWqC8gcZVrVDzxqDTdyEdkKavatRYnMo9PTaM4twAwP9bR-jqhDPuTl-pUfUbIZm0QhZgQ1s8tpgp5lIplz3mwASyxkmsUnXMJ7YZFFd4VO0BUuIN1cOCpNMORqiiLZJOcYiNPbBAD_3qLzXFVf2R3n7Q"/>
+</div>
+<button class="bg-primary text-white px-4 py-1.5 rounded-lg text-xs font-bold hover:opacity-90 transition-opacity">Deploy Project</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-64 pt-20 p-8 min-h-screen">
+<header class="mb-8">
+<h2 class="text-3xl font-extrabold font-headline tracking-tight text-on-surface">Phase 2: Measure</h2>
+<p class="text-slate-500 mt-1">Establish process performance baseline and validate measurement systems.</p>
+</header>
+<!-- Top Row: File Upload & Stats (Asymmetric Layout) -->
+<div class="grid grid-cols-12 gap-6 mb-8">
+<!-- File Upload -->
+<div class="col-span-12 lg:col-span-8 bg-surface-container-low rounded-xl p-6 relative overflow-hidden group border-b-2 border-transparent focus-within:border-primary transition-all">
+<div class="flex flex-col items-center justify-center border-2 border-dashed border-outline-variant/30 rounded-lg p-10 bg-white/50 group-hover:bg-white transition-colors">
+<span class="material-symbols-outlined text-5xl text-primary/40 mb-4" data-icon="upload_file">upload_file</span>
+<h3 class="text-lg font-bold font-headline mb-2">Upload Measurement Data</h3>
+<p class="text-sm text-slate-500 mb-6">Drag and drop your .csv or .xlsx files here to begin Pareto analysis</p>
+<div class="flex gap-3">
+<button class="px-6 py-2 bg-white text-on-surface font-semibold rounded-lg text-sm shadow-sm hover:bg-surface-container-high transition-colors">Browse Files</button>
+<button class="px-6 py-2 bg-secondary text-white font-semibold rounded-lg text-sm shadow-sm hover:opacity-90 transition-opacity">Connect Cloud Source</button>
+</div>
+</div>
+</div>
+<!-- Activity Ribbon / Stats -->
+<div class="col-span-12 lg:col-span-4 space-y-6">
+<div class="bg-surface-container rounded-xl p-6 flex items-center justify-between relative overflow-hidden">
+<div class="absolute right-0 top-0 h-full w-2 bg-tertiary-fixed-dim"></div>
+<div>
+<p class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Process Stability</p>
+<p class="text-3xl font-black font-headline text-on-surface">84.2%</p>
+</div>
+<span class="material-symbols-outlined text-4xl text-primary/20" data-icon="query_stats">query_stats</span>
+</div>
+<div class="bg-surface-container rounded-xl p-6 flex items-center justify-between">
+<div>
+<p class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Active Samples</p>
+<p class="text-3xl font-black font-headline text-on-surface">1,204</p>
+</div>
+<span class="material-symbols-outlined text-4xl text-secondary/20" data-icon="database">database</span>
+</div>
+</div>
+</div>
+<!-- Pareto Analysis Section (Bento Grid Style) -->
+<div class="grid grid-cols-12 gap-6 mb-8">
+<!-- Pareto Chart Visualization -->
+<div class="col-span-12 xl:col-span-9 bg-surface-container-lowest rounded-xl p-8 shadow-sm">
+<div class="flex justify-between items-start mb-10">
+<div>
+<h3 class="text-xl font-bold font-headline">Pareto Analysis (Defects by Root Cause)</h3>
+<p class="text-sm text-slate-500">The 80/20 rule: Identify the vital few vs. the useful many.</p>
+</div>
+<div class="flex gap-2">
+<button class="p-2 hover:bg-surface-container rounded-lg"><span class="material-symbols-outlined text-slate-400" data-icon="filter_list">filter_list</span></button>
+<button class="p-2 hover:bg-surface-container rounded-lg"><span class="material-symbols-outlined text-slate-400" data-icon="more_vert">more_vert</span></button>
+</div>
+</div>
+<!-- Simulated Chart Area -->
+<div class="h-64 flex items-end gap-4 px-4 relative">
+<!-- Bars -->
+<div class="flex-1 flex flex-col items-center group relative">
+<div class="w-full bg-primary/80 rounded-t-lg group-hover:bg-primary transition-colors" style="height: 100%;"></div>
+<div class="absolute -top-6 text-[10px] font-mono text-primary font-bold">542</div>
+</div>
+<div class="flex-1 flex flex-col items-center group relative">
+<div class="w-full bg-primary/60 rounded-t-lg group-hover:bg-primary transition-colors" style="height: 70%;"></div>
+<div class="absolute -top-6 text-[10px] font-mono text-primary font-bold">382</div>
+</div>
+<div class="flex-1 flex flex-col items-center group relative">
+<div class="w-full bg-primary/40 rounded-t-lg group-hover:bg-primary transition-colors" style="height: 45%;"></div>
+<div class="absolute -top-6 text-[10px] font-mono text-primary font-bold">241</div>
+</div>
+<div class="flex-1 flex flex-col items-center group relative">
+<div class="w-full bg-primary/20 rounded-t-lg group-hover:bg-primary transition-colors" style="height: 25%;"></div>
+<div class="absolute -top-6 text-[10px] font-mono text-primary font-bold">120</div>
+</div>
+<div class="flex-1 flex flex-col items-center group relative">
+<div class="w-full bg-primary/10 rounded-t-lg group-hover:bg-primary transition-colors" style="height: 10%;"></div>
+<div class="absolute -top-6 text-[10px] font-mono text-primary font-bold">48</div>
+</div>
+<!-- Cumulative Line (SVG Overlay) -->
+<svg class="absolute inset-0 h-full w-full pointer-events-none" preserveaspectratio="none">
+<path d="M 50 180 Q 200 120, 350 80 T 650 40" fill="none" stroke="#006fee" stroke-dasharray="4 2" stroke-width="3"></path>
+<circle cx="50" cy="180" fill="#006fee" r="4"></circle>
+<circle cx="200" cy="120" fill="#006fee" r="4"></circle>
+<circle cx="350" cy="80" fill="#006fee" r="4"></circle>
+<circle cx="650" cy="40" fill="#006fee" r="4"></circle>
+</svg>
+<!-- Percent Axis -->
+<div class="absolute right-0 top-0 bottom-0 flex flex-col justify-between text-[10px] font-mono text-slate-400 translate-x-12 border-l border-outline-variant/20 pl-2">
+<span>100%</span>
+<span>80%</span>
+<span>60%</span>
+<span>40%</span>
+<span>20%</span>
+<span>0%</span>
+</div>
+</div>
+<div class="flex justify-around mt-6 text-[10px] font-bold text-slate-500 uppercase tracking-tighter">
+<span class="flex-1 text-center">Machine Calibration</span>
+<span class="flex-1 text-center">Material Impurity</span>
+<span class="flex-1 text-center">Operator Error</span>
+<span class="flex-1 text-center">Temp Fluctuation</span>
+<span class="flex-1 text-center">Other</span>
+</div>
+</div>
+<!-- AI Insight Box -->
+<div class="col-span-12 xl:col-span-3 space-y-6">
+<div class="bg-surface-container-low p-6 rounded-xl relative overflow-hidden">
+<div class="relative z-10">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary" data-icon="bolt">bolt</span>
+<span class="text-xs font-bold uppercase tracking-widest text-primary">AI Strategy</span>
+</div>
+<h4 class="font-headline font-bold text-lg mb-3">Target: Calibration</h4>
+<p class="text-sm leading-relaxed text-slate-600 mb-4">Our model suggests that focusing on "Machine Calibration" will yield a <span class="font-bold text-on-surface">42% reduction</span> in total defects.</p>
+<div class="bg-white/50 p-3 rounded-lg border border-primary/10">
+<p class="text-[11px] font-medium text-slate-500 mb-1 italic">Strategic Recommendation:</p>
+<p class="text-xs text-on-surface font-semibold">Implement sensor-based real-time telemetry on Unit 4 to preempt drift.</p>
+</div>
+</div>
+</div>
+<button class="w-full py-4 kinetic-gradient rounded-xl text-white font-bold flex items-center justify-center gap-2 shadow-xl hover:scale-[1.02] transition-transform">
+<span class="material-symbols-outlined" data-icon="auto_awesome">auto_awesome</span>
+                    Run Deep Analysis
+                </button>
+</div>
+</div>
+<!-- Data Preview Table -->
+<section class="bg-surface-container-low rounded-2xl overflow-hidden shadow-sm">
+<div class="px-8 py-6 border-b border-outline-variant/10 flex justify-between items-center bg-white">
+<h3 class="text-lg font-bold font-headline">Measurement Data Preview</h3>
+<div class="flex gap-4 items-center">
+<span class="text-xs font-mono bg-surface-container px-2 py-1 rounded">Showing 10 of 1,204 rows</span>
+<button class="text-secondary text-sm font-bold flex items-center gap-1"><span class="material-symbols-outlined text-lg" data-icon="ios_share">ios_share</span> Export Report</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-low">
+<th class="px-8 py-4 text-[10px] font-bold text-slate-500 uppercase tracking-wider">Timestamp</th>
+<th class="px-8 py-4 text-[10px] font-bold text-slate-500 uppercase tracking-wider">Batch ID</th>
+<th class="px-8 py-4 text-[10px] font-bold text-slate-500 uppercase tracking-wider">Defect Type</th>
+<th class="px-8 py-4 text-[10px] font-bold text-slate-500 uppercase tracking-wider">Magnitude</th>
+<th class="px-8 py-4 text-[10px] font-bold text-slate-500 uppercase tracking-wider">Status</th>
+<th class="px-8 py-4"></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/5">
+<tr class="hover:bg-white transition-colors">
+<td class="px-8 py-4 text-xs font-mono">2023-11-24 14:22:11</td>
+<td class="px-8 py-4 text-xs font-semibold">#BT-9902</td>
+<td class="px-8 py-4 text-xs">Calibration Drift</td>
+<td class="px-8 py-4 text-xs font-mono text-error">0.45mm</td>
+<td class="px-8 py-4">
+<span class="bg-error-container text-on-error-container px-2 py-1 rounded-full text-[10px] font-bold">FAIL</span>
+</td>
+<td class="px-8 py-4 text-right">
+<span class="material-symbols-outlined text-slate-400 cursor-pointer" data-icon="edit">edit</span>
+</td>
+</tr>
+<tr class="hover:bg-white transition-colors">
+<td class="px-8 py-4 text-xs font-mono">2023-11-24 14:18:05</td>
+<td class="px-8 py-4 text-xs font-semibold">#BT-9901</td>
+<td class="px-8 py-4 text-xs">Material Purity</td>
+<td class="px-8 py-4 text-xs font-mono text-secondary">0.12mm</td>
+<td class="px-8 py-4">
+<span class="bg-secondary-container text-white px-2 py-1 rounded-full text-[10px] font-bold">PASS</span>
+</td>
+<td class="px-8 py-4 text-right">
+<span class="material-symbols-outlined text-slate-400 cursor-pointer" data-icon="edit">edit</span>
+</td>
+</tr>
+<tr class="hover:bg-white transition-colors">
+<td class="px-8 py-4 text-xs font-mono">2023-11-24 14:15:30</td>
+<td class="px-8 py-4 text-xs font-semibold">#BT-9900</td>
+<td class="px-8 py-4 text-xs">Calibration Drift</td>
+<td class="px-8 py-4 text-xs font-mono text-error">0.49mm</td>
+<td class="px-8 py-4">
+<span class="bg-error-container text-on-error-container px-2 py-1 rounded-full text-[10px] font-bold">FAIL</span>
+</td>
+<td class="px-8 py-4 text-right">
+<span class="material-symbols-outlined text-slate-400 cursor-pointer" data-icon="edit">edit</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</main>
+</body></html>

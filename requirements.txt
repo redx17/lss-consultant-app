@@ -1,8 +1,2 @@
-streamlit
-pandas
-plotly
-openai
-scipy
-numpy
-graphviz
-openpyxl
+
+reflex==0.8.28.post1

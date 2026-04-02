@@ -1,0 +1,10 @@
+.web
+*.db
+*.py[cod]
+.states
+assets/external/
+__pycache__/
+*.log
+*.zip
+uploaded_files/
+my-reflex-app/

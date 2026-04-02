@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Lean Six Sigma Workspace | Define Phase</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=Sometype+Mono&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface-dim": "#dbd6fb",
+            "on-tertiary-fixed-variant": "#594400",
+            "on-surface-variant": "#564052",
+            "surface-container-lowest": "#ffffff",
+            "primary-container": "#ff00ff",
+            "surface-variant": "#e3dfff",
+            "on-secondary-fixed": "#001a42",
+            "on-primary-container": "#510051",
+            "surface-container-highest": "#e3dfff",
+            "background": "#fcf8ff",
+            "on-primary-fixed-variant": "#810081",
+            "secondary-fixed-dim": "#aec6ff",
+            "primary": "#a900a9",
+            "surface-tint": "#a900a9",
+            "primary-fixed": "#ffd7f5",
+            "on-secondary": "#ffffff",
+            "surface-bright": "#fcf8ff",
+            "outline": "#897083",
+            "tertiary-container": "#b58c00",
+            "primary-fixed-dim": "#ffabf3",
+            "outline-variant": "#dcbed4",
+            "secondary-container": "#006fee",
+            "surface-container-low": "#f6f1ff",
+            "secondary": "#0058bf",
+            "secondary-fixed": "#d8e2ff",
+            "on-tertiary-fixed": "#251a00",
+            "tertiary-fixed": "#ffdf96",
+            "on-secondary-container": "#fefcff",
+            "on-tertiary-container": "#372900",
+            "tertiary": "#765a00",
+            "on-primary-fixed": "#380038",
+            "on-primary": "#ffffff",
+            "on-error": "#ffffff",
+            "surface-container-high": "#eae5ff",
+            "surface-container": "#f0ebff",
+            "on-tertiary": "#ffffff",
+            "on-error-container": "#93000a",
+            "surface": "#fcf8ff",
+            "on-surface": "#1a1834",
+            "error-container": "#ffdad6",
+            "inverse-surface": "#2f2d4a",
+            "on-secondary-fixed-variant": "#004396",
+            "error": "#ba1a1a",
+            "inverse-primary": "#ffabf3",
+            "inverse-on-surface": "#f3eeff",
+            "tertiary-fixed-dim": "#f6bf00",
+            "on-background": "#1a1834"
+          },
+          fontFamily: {
+            "headline": ["Plus Jakarta Sans"],
+            "body": ["Inter"],
+            "label": ["Inter"],
+            "mono": ["Sometype Mono"]
+          },
+          borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    .glass-effect { backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+  </style>
+</head>
+<body class="bg-background font-body text-on-surface antialiased overflow-x-hidden">
+<!-- SideNavBar Implementation -->
+<aside class="fixed left-0 top-0 h-full w-64 flex flex-col border-r-0 bg-[#f6f1ff] dark:bg-slate-900 z-40">
+<div class="p-6">
+<div class="flex items-center gap-3 mb-8">
+<div class="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-sm" data-weight="fill" style="font-variation-settings: 'FILL' 1;">analytics</span>
+</div>
+<div class="flex flex-col">
+<span class="text-lg font-bold text-[#1a1834] dark:text-[#ffffff] leading-none">Project Workspace</span>
+<span class="text-[0.65rem] font-medium text-primary opacity-70 uppercase tracking-wider">Lean Six Sigma Dashboard</span>
+</div>
+</div>
+<nav class="space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-[#1a1834] dark:text-slate-400 opacity-80 hover:bg-[#f0ebff] transition-colors duration-150 rounded-lg group" href="#">
+<span class="material-symbols-outlined text-[20px]">analytics</span>
+<span class="text-[0.75rem] font-medium">Project Pulse</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-[#1a1834] dark:text-slate-400 opacity-80 hover:bg-[#f0ebff] transition-colors duration-150 rounded-lg group" href="#">
+<span class="material-symbols-outlined text-[20px]">factory</span>
+<span class="text-[0.75rem] font-medium">Facility</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-[#1a1834] dark:text-slate-400 opacity-80 hover:bg-[#f0ebff] transition-colors duration-150 rounded-lg group" href="#">
+<span class="material-symbols-outlined text-[20px]">domain</span>
+<span class="text-[0.75rem] font-medium">Department</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-[#1a1834] dark:text-slate-400 opacity-80 hover:bg-[#f0ebff] transition-colors duration-150 rounded-lg group" href="#">
+<span class="material-symbols-outlined text-[20px]">save</span>
+<span class="text-[0.75rem] font-medium">Load/Save</span>
+</a>
+</nav>
+</div>
+<div class="mt-auto p-6 space-y-4">
+<div class="bg-surface-container-highest/50 p-4 rounded-xl border-l-4 border-tertiary-fixed-dim">
+<p class="text-[0.7rem] font-semibold mb-2">AI Consultant Chat</p>
+<div class="flex gap-2">
+<div class="flex -space-x-2">
+<img alt="AI Agent" class="w-6 h-6 rounded-full border-2 border-surface-container-low" data-alt="professional portrait of a friendly digital assistant avatar with minimalist features" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA55x-8_i-GKtzIz-TFBMNuuAUuXHufYxaxXd9K8GC8s94w-o7kHF2j01kmz2KJyiv_DlrBXnCkcwtDtP1pMhV8U4Nguwh7SnhFFgt2ye_SKuSHs5JPXi0lW8w26Eso6QPdVqJatPIkJC-zH8dpJadlIdbOk2r0dK-ru8V6VIXt4w14e2DVO7jIH8LscFYcZ9Dh5fMWFJWATBUdANHuMi9niFV6DKVzicfv67Qe_oM4bkIEMAZKOXrl42-PwhGW2fwqF1lAF0ClEkQ"/>
+</div>
+<div class="h-2 w-full bg-surface-variant rounded-full mt-2 self-center overflow-hidden">
+<div class="h-full bg-primary w-2/3"></div>
+</div>
+</div>
+</div>
+<nav class="space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-[#1a1834] dark:text-slate-400 opacity-80 hover:bg-[#f0ebff] rounded-lg" href="#">
+<span class="material-symbols-outlined text-[20px]">summarize</span>
+<span class="text-[0.75rem] font-medium">Executive Summary</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-[#1a1834] dark:text-slate-400 opacity-80 hover:bg-[#f0ebff] rounded-lg" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+<span class="text-[0.75rem] font-medium">Settings</span>
+</a>
+</nav>
+</div>
+</aside>
+<!-- TopNavBar Implementation -->
+<header class="fixed top-0 right-0 left-64 h-14 bg-[#fcf8ff]/80 dark:bg-slate-950/80 backdrop-blur-md border-b-[0.5px] border-[#dcbed4]/15 flex justify-between items-center px-6 z-50">
+<div class="flex items-center gap-8">
+<h1 class="bg-gradient-to-r from-[#a900a9] to-[#006fee] bg-clip-text text-transparent font-black text-xl leading-none">Six Sigma Kinetic</h1>
+<nav class="flex gap-6 h-full items-center">
+<a class="text-[#a900a9] dark:text-[#f0ebff] border-b-2 border-[#a900a9] font-bold text-sm h-full flex items-center mt-[2px]" href="#">Define</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-[#a900a9] transition-all text-sm font-medium" href="#">Measure</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-[#a900a9] transition-all text-sm font-medium" href="#">Analyze</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-[#a900a9] transition-all text-sm font-medium" href="#">Improve</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex gap-2">
+<button class="px-4 py-1.5 text-xs font-semibold text-on-surface bg-surface-container-highest rounded-lg hover:bg-surface-dim transition-colors">Export Report</button>
+<button class="px-4 py-1.5 text-xs font-semibold text-white bg-gradient-to-r from-primary to-secondary-container rounded-lg hover:opacity-90 transition-opacity">Deploy Project</button>
+</div>
+<div class="flex items-center gap-3 pl-4 border-l border-outline-variant/30">
+<span class="material-symbols-outlined text-slate-500 hover:text-primary cursor-pointer text-[20px]">notifications</span>
+<span class="material-symbols-outlined text-slate-500 hover:text-primary cursor-pointer text-[20px]">help_outline</span>
+<img alt="User Profile" class="w-8 h-8 rounded-full bg-surface-container" data-alt="professional business headshot of a female project manager with glasses and a soft smile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUaSZOXM7-XOAF0Arr3v55gI-K0I8FOeAl_YgZtkgIGYaUCpj7XNZrpdL9_VskkBBVEscYoOE_xd4iZgaBPkJjjvamtcWxwKi0oHDl8wUCu4UzAqdoWm5icW1xjU1EzHwpR0NwjqMmJ78acYusM_oO4VvGhBF6zpBIz_d2j8lln8V8ShMD9EwgWcSw8w0HDXAtu4XtTeQOtMG-tJwuH5m9XlHydEvqNvKArvjs_dV9sbdO6REPUM17_-0D7DTlwyqQDVgvg1nmvEE"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="pl-64 pt-14 min-h-screen">
+<div class="p-8 max-w-[1600px] mx-auto">
+<!-- Page Header & Phase Indicator -->
+<div class="flex items-end justify-between mb-8">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="text-[0.65rem] font-bold text-primary px-2 py-0.5 bg-primary-container/10 rounded uppercase">DMAIC: Phase 01</span>
+<span class="text-[0.65rem] font-medium text-on-surface-variant/60">• Updated 2 hours ago</span>
+</div>
+<h2 class="text-3xl font-extrabold font-headline tracking-tight text-on-surface">Project Charter <span class="text-outline-variant/50 font-light">/ LSS-2024-082</span></h2>
+</div>
+<div class="flex gap-2">
+<div class="flex items-center gap-1.5 bg-surface-container-low px-3 py-1.5 rounded-lg border border-outline-variant/10">
+<span class="w-2 h-2 rounded-full bg-tertiary-fixed-dim"></span>
+<span class="text-xs font-medium">Priority: High</span>
+</div>
+<div class="flex items-center gap-1.5 bg-surface-container-low px-3 py-1.5 rounded-lg border border-outline-variant/10">
+<span class="material-symbols-outlined text-[16px] text-primary">verified</span>
+<span class="text-xs font-medium">Validated</span>
+</div>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-12 gap-6">
+<!-- Section: Project Core (Left Main Column) -->
+<div class="col-span-12 lg:col-span-8 space-y-6">
+<!-- Charter Core Card -->
+<div class="bg-surface-container-low rounded-xl p-6 relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4 opacity-5">
+<span class="material-symbols-outlined text-[80px]">description</span>
+</div>
+<div class="grid grid-cols-1 gap-8">
+<div class="space-y-2">
+<label class="text-[0.65rem] font-bold uppercase tracking-widest text-primary flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px]">business_center</span> Business Case
+                </label>
+<div class="bg-surface-container-lowest p-4 rounded-lg shadow-sm border-b-2 border-outline-variant/20 focus-within:border-primary transition-all">
+<textarea class="w-full bg-transparent border-none focus:ring-0 text-sm text-on-surface placeholder:text-on-surface-variant/30 leading-relaxed resize-none" placeholder="Why must we do this project now? What is the impact of not doing it?" rows="3">Our current fulfillment process at the North Distribution Center is experiencing a 14% lead-time delay compared to industry benchmarks, resulting in an estimated $1.2M annual loss in churned customers.</textarea>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="text-[0.65rem] font-bold uppercase tracking-widest text-primary flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px]">report_problem</span> Problem Statement
+                  </label>
+<div class="bg-surface-container-lowest p-4 rounded-lg shadow-sm border-b-2 border-outline-variant/20 focus-within:border-primary transition-all h-full">
+<textarea class="w-full bg-transparent border-none focus:ring-0 text-sm text-on-surface placeholder:text-on-surface-variant/30 leading-relaxed resize-none" rows="4">Over the last 6 months, order processing errors have increased from 2% to 5.4%. This has led to a 22% increase in support tickets and high overtime costs for warehouse staff.</textarea>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-[0.65rem] font-bold uppercase tracking-widest text-primary flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px]">flag</span> Goal Statement (SMART)
+                  </label>
+<div class="bg-surface-container-lowest p-4 rounded-lg shadow-sm border-b-2 border-outline-variant/20 focus-within:border-primary transition-all h-full">
+<textarea class="w-full bg-transparent border-none focus:ring-0 text-sm text-on-surface placeholder:text-on-surface-variant/30 leading-relaxed resize-none" rows="4">Reduce fulfillment errors from 5.4% to &lt; 1.5% by Q4 2024, saving approximately $450k in operational overhead while maintaining a 98% on-time delivery rate.</textarea>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- SIPOC Table Section -->
+<div class="bg-surface-container-low rounded-xl p-6">
+<div class="flex items-center justify-between mb-6">
+<label class="text-[0.65rem] font-bold uppercase tracking-widest text-primary flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px]">account_tree</span> SIPOC Analysis
+              </label>
+<button class="text-primary hover:bg-primary-container/10 p-1 rounded-full transition-colors">
+<span class="material-symbols-outlined text-[18px]">add_circle</span>
+</button>
+</div>
+<div class="grid grid-cols-5 gap-3">
+<!-- Suppliers -->
+<div class="space-y-3">
+<div class="bg-primary/5 text-primary text-[0.65rem] font-bold py-1 px-3 rounded uppercase text-center">Suppliers</div>
+<div class="bg-surface-container-lowest p-3 rounded-lg text-xs space-y-2 min-h-[120px]">
+<div class="p-2 bg-surface-container-low rounded flex justify-between items-center group">
+<span>Raw Mat. Vendors</span>
+<span class="material-symbols-outlined text-[14px] opacity-0 group-hover:opacity-100 cursor-pointer">drag_indicator</span>
+</div>
+<div class="p-2 bg-surface-container-low rounded flex justify-between items-center group">
+<span>IT Infrastructure</span>
+<span class="material-symbols-outlined text-[14px] opacity-0 group-hover:opacity-100 cursor-pointer">drag_indicator</span>
+</div>
+</div>
+</div>
+<!-- Inputs -->
+<div class="space-y-3">
+<div class="bg-primary/5 text-primary text-[0.65rem] font-bold py-1 px-3 rounded uppercase text-center">Inputs</div>
+<div class="bg-surface-container-lowest p-3 rounded-lg text-xs space-y-2 min-h-[120px]">
+<div class="p-2 bg-surface-container-low rounded">Order Data (XML)</div>
+<div class="p-2 bg-surface-container-low rounded">Packaging Mats</div>
+</div>
+</div>
+<!-- Process -->
+<div class="space-y-3">
+<div class="bg-primary text-white text-[0.65rem] font-bold py-1 px-3 rounded uppercase text-center">Process</div>
+<div class="bg-surface-container-lowest p-3 rounded-lg text-xs space-y-2 min-h-[120px]">
+<div class="p-2 border-l-2 border-primary bg-surface-container-low rounded">1. Receive Order</div>
+<div class="p-2 border-l-2 border-primary bg-surface-container-low rounded">2. Quality Check</div>
+</div>
+</div>
+<!-- Outputs -->
+<div class="space-y-3">
+<div class="bg-primary/5 text-primary text-[0.65rem] font-bold py-1 px-3 rounded uppercase text-center">Outputs</div>
+<div class="bg-surface-container-lowest p-3 rounded-lg text-xs space-y-2 min-h-[120px]">
+<div class="p-2 bg-surface-container-low rounded">Shipped Product</div>
+<div class="p-2 bg-surface-container-low rounded">Inv. Updates</div>
+</div>
+</div>
+<!-- Customers -->
+<div class="space-y-3">
+<div class="bg-primary/5 text-primary text-[0.65rem] font-bold py-1 px-3 rounded uppercase text-center">Customers</div>
+<div class="bg-surface-container-lowest p-3 rounded-lg text-xs space-y-2 min-h-[120px]">
+<div class="p-2 bg-surface-container-low rounded font-semibold text-secondary">End-User (B2C)</div>
+<div class="p-2 bg-surface-container-low rounded font-semibold text-secondary">Retail Partners</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Section: Side Panel (Right Column) -->
+<div class="col-span-12 lg:col-span-4 space-y-6">
+<!-- Team Structure Card -->
+<div class="bg-surface-container-lowest rounded-xl p-6 shadow-[0px_12px_32px_rgba(26,24,52,0.06)] border border-outline-variant/10">
+<h3 class="text-sm font-bold font-headline mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">groups</span> Project Team
+            </h3>
+<div class="space-y-4">
+<!-- Team Member Row -->
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container overflow-hidden flex-shrink-0">
+<img alt="Black Belt" data-alt="professional avatar of a middle-aged male with sharp features and professional attire" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3e6ESmx_m_zNI24SSWIkX8Se7kntUUvCPU8KqjEcazS-x0KlERUlzSka1abRJQc01OtV6_9sIvUCL44ZYZiFI6oRHlSimQriQGKlzp7IDuJ5lrJWB7zvaCMqFBkfRt0qR-nR3VyyAe-kKMIaeUegy_nnqEmu6A7ntW9ZvhsCLXj-FSbMTwMOdlTzj8djEcz9nNPdy0xZ2bHCguon4WCL-DQumQ2GYJRY6NgLbmGqZMHGSuF0A3Tqopq-WbTPpszi04D4HgrOzIMQ"/>
+</div>
+<div class="flex-grow">
+<p class="text-[0.65rem] font-bold text-primary uppercase">Black Belt / Lead</p>
+<input class="w-full p-0 border-none bg-transparent text-sm font-semibold focus:ring-0 placeholder:text-on-surface-variant/20" type="text" value="Sarah Jenkins"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container overflow-hidden flex-shrink-0">
+<img alt="Project Sponsor" data-alt="corporate profile photo of a senior executive male with silver hair and a professional suit" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyvXbAwKrUuUIQoxbTFYch4G7hQpFnS_2H6tpuE-UjvRhvxUHYAzthwVNuZggEprpSzFV2u425-aQ1ssla1dK9_W0WCl7bFeFgkaaGC6W1fPB-4_8RTeFJEk1_czrKVuTJYoAeiwZZehrOfrzlme3KVdDxnTYCTOtHhHMDyGl_GgWFnHVIIxHqHEWyuuXBb68Gv6Bgsqi-RgXteiqVk6RXzw8Mfg93JDsL3Xin4Dh1XDEMIhS8XriDa0lfLLCtNgmsdQT40RMyPXQ"/>
+</div>
+<div class="flex-grow">
+<p class="text-[0.65rem] font-bold text-primary uppercase">Project Sponsor</p>
+<input class="w-full p-0 border-none bg-transparent text-sm font-semibold focus:ring-0 placeholder:text-on-surface-variant/20" type="text" value="Michael Thorne"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-low border border-dashed border-primary/30 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-primary/40 text-[18px]">add</span>
+</div>
+<div class="flex-grow">
+<p class="text-[0.65rem] font-bold text-outline uppercase">Green Belt / Member</p>
+<input class="w-full p-0 border-none bg-transparent text-sm font-semibold focus:ring-0 placeholder:text-on-surface-variant/20" placeholder="Assign Member..." type="text"/>
+</div>
+</div>
+</div>
+<button class="w-full mt-6 py-2 rounded-lg border border-primary/20 text-primary text-xs font-bold hover:bg-primary/5 transition-colors">Manage Permissions</button>
+</div>
+<!-- Project Boundaries & Financials -->
+<div class="bg-surface-container-low rounded-xl p-6">
+<h3 class="text-sm font-bold font-headline mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">straighten</span> Project Boundaries
+            </h3>
+<div class="space-y-5">
+<div>
+<label class="text-[0.6rem] font-extrabold text-on-surface-variant uppercase tracking-widest block mb-2">In Scope</label>
+<div class="bg-surface-container-lowest p-3 rounded-lg border-l-4 border-secondary-container">
+<ul class="text-xs space-y-2">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-[14px] text-secondary mt-0.5">check_circle</span>
+<span>North Distribution Center fulfillment pipeline</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-[14px] text-secondary mt-0.5">check_circle</span>
+<span>Pick-to-Pack operational sequence</span>
+</li>
+</ul>
+</div>
+</div>
+<div>
+<label class="text-[0.6rem] font-extrabold text-on-surface-variant uppercase tracking-widest block mb-2">Out of Scope</label>
+<div class="bg-surface-container-lowest p-3 rounded-lg border-l-4 border-error/30">
+<ul class="text-xs space-y-2">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-[14px] text-error mt-0.5">cancel</span>
+<span>Last-mile carrier negotiations</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- Financials Widget -->
+<div class="pt-4 mt-4 border-t border-outline-variant/20">
+<div class="flex justify-between items-center mb-3">
+<label class="text-[0.6rem] font-extrabold text-on-surface-variant uppercase">Financial Impact</label>
+<span class="font-mono text-[0.7rem] text-primary font-bold">Est. Savings: $450k/yr</span>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-xs p-2 bg-surface-container-lowest rounded group relative">
+<span class="text-on-surface-variant">Allocated Budget</span>
+<span class="font-mono font-bold">$125,000</span>
+<!-- Activity Ribbon -->
+<div class="absolute right-0 top-1/2 -translate-y-1/2 w-1 h-2/3 bg-tertiary-fixed rounded-l"></div>
+</div>
+<div class="flex justify-between text-xs p-2 bg-surface-container-lowest rounded">
+<span class="text-on-surface-variant">Current Spend</span>
+<span class="font-mono font-bold">$12,450</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Documentation Quick Links -->
+<div class="bg-surface p-4 rounded-xl border border-outline-variant/30 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[18px]">attach_file</span>
+</div>
+<div>
+<p class="text-xs font-bold">Project_Data_Q1.csv</p>
+<p class="text-[0.6rem] text-on-surface-variant/60">Uploaded by Sarah J. • 12MB</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant/40 cursor-pointer hover:text-primary transition-colors">download</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Footer Action (Contextual Suppression Check - Should appear for "Save/Edit" logic) -->
+<div class="fixed bottom-8 right-8 flex gap-3 z-50">
+<button class="h-12 w-12 rounded-full bg-surface-container-lowest shadow-lg border border-outline-variant/10 flex items-center justify-center text-on-surface hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined">history</span>
+</button>
+<button class="h-12 px-6 rounded-full bg-gradient-to-r from-primary to-secondary-container shadow-xl text-white font-bold text-sm flex items-center gap-2 hover:scale-[1.02] transition-all">
+<span class="material-symbols-outlined text-[20px]">save</span>
+      Save Charter
+    </button>
+</div>
+</body></html>

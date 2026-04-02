@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Six Sigma Kinetic - Analyze Phase</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=Sometype+Mono&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "surface-dim": "#dbd6fb",
+                "on-tertiary-fixed-variant": "#594400",
+                "on-surface-variant": "#564052",
+                "surface-container-lowest": "#ffffff",
+                "primary-container": "#ff00ff",
+                "surface-variant": "#e3dfff",
+                "on-secondary-fixed": "#001a42",
+                "on-primary-container": "#510051",
+                "surface-container-highest": "#e3dfff",
+                "background": "#fcf8ff",
+                "on-primary-fixed-variant": "#810081",
+                "secondary-fixed-dim": "#aec6ff",
+                "primary": "#a900a9",
+                "surface-tint": "#a900a9",
+                "primary-fixed": "#ffd7f5",
+                "on-secondary": "#ffffff",
+                "surface-bright": "#fcf8ff",
+                "outline": "#897083",
+                "tertiary-container": "#b58c00",
+                "primary-fixed-dim": "#ffabf3",
+                "outline-variant": "#dcbed4",
+                "secondary-container": "#006fee",
+                "surface-container-low": "#f6f1ff",
+                "secondary": "#0058bf",
+                "secondary-fixed": "#d8e2ff",
+                "on-tertiary-fixed": "#251a00",
+                "tertiary-fixed": "#ffdf96",
+                "on-secondary-container": "#fefcff",
+                "on-tertiary-container": "#372900",
+                "tertiary": "#765a00",
+                "on-primary-fixed": "#380038",
+                "on-primary": "#ffffff",
+                "on-error": "#ffffff",
+                "surface-container-high": "#eae5ff",
+                "surface-container": "#f0ebff",
+                "on-tertiary": "#ffffff",
+                "on-error-container": "#93000a",
+                "surface": "#fcf8ff",
+                "on-surface": "#1a1834",
+                "error-container": "#ffdad6",
+                "inverse-surface": "#2f2d4a",
+                "on-secondary-fixed-variant": "#004396",
+                "error": "#ba1a1a",
+                "inverse-primary": "#ffabf3",
+                "inverse-on-surface": "#f3eeff",
+                "tertiary-fixed-dim": "#f6bf00",
+                "on-background": "#1a1834"
+              },
+              fontFamily: {
+                "headline": ["Plus Jakarta Sans"],
+                "body": ["Inter"],
+                "label": ["Inter"]
+              },
+              borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .kinetic-gradient {
+            background: linear-gradient(90deg, #a900a9 0%, #006fee 100%);
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, .font-headline { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .mono { font-family: 'Sometype Mono', monospace; }
+    </style>
+</head>
+<body class="bg-background text-on-surface flex min-h-screen">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full z-40 h-screen w-64 flex flex-col border-r-0 bg-[#f6f1ff] dark:bg-slate-900">
+<div class="p-6">
+<h1 class="text-lg font-bold text-[#1a1834] dark:text-[#ffffff] mb-1">Project Workspace</h1>
+<p class="text-xs opacity-60 font-body">Lean Six Sigma Dashboard</p>
+</div>
+<nav class="flex-1 px-4 space-y-1">
+<div class="text-[#1a1834] dark:text-slate-400 opacity-80 hover:bg-[#f0ebff] transition-colors duration-150 flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer group">
+<span class="material-symbols-outlined text-xl">analytics</span>
+<span class="text-sm font-medium">Project Pulse</span>
+</div>
+<div class="text-[#1a1834] dark:text-slate-400 opacity-80 hover:bg-[#f0ebff] transition-colors duration-150 flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer group">
+<span class="material-symbols-outlined text-xl">factory</span>
+<span class="text-sm font-medium">Facility</span>
+</div>
+<div class="bg-[#f0ebff] dark:bg-slate-800 text-[#a900a9] dark:text-white font-semibold rounded-lg flex items-center gap-3 px-3 py-2 cursor-pointer">
+<span class="material-symbols-outlined text-xl">domain</span>
+<span class="text-sm">Department</span>
+</div>
+<div class="text-[#1a1834] dark:text-slate-400 opacity-80 hover:bg-[#f0ebff] transition-colors duration-150 flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer group">
+<span class="material-symbols-outlined text-xl">save</span>
+<span class="text-sm font-medium">Load/Save</span>
+</div>
+</nav>
+<div class="mt-auto p-4 space-y-1 border-t border-outline-variant/10">
+<div class="text-[#1a1834] dark:text-slate-400 opacity-80 hover:bg-[#f0ebff] flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer">
+<span class="material-symbols-outlined text-xl">summarize</span>
+<span class="text-sm">Executive Summary</span>
+</div>
+<div class="text-[#1a1834] dark:text-slate-400 opacity-80 hover:bg-[#f0ebff] flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer">
+<span class="material-symbols-outlined text-xl">settings</span>
+<span class="text-sm">Settings</span>
+</div>
+<button class="mt-4 w-full kinetic-gradient text-white rounded-lg py-2.5 px-4 text-xs font-bold shadow-md flex items-center justify-center gap-2 scale-98 active:opacity-90 transition-all">
+<span class="material-symbols-outlined text-sm">smart_toy</span>
+                AI Consultant Chat
+            </button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 ml-64 min-h-screen">
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 left-64 flex justify-between items-center px-6 z-50 w-full h-14 bg-[#fcf8ff]/80 dark:bg-slate-950/80 backdrop-blur-md border-b-[0.5px] border-[#dcbed4]/15">
+<div class="flex items-center gap-8">
+<div class="bg-gradient-to-r from-[#a900a9] to-[#006fee] bg-clip-text text-transparent font-black text-xl">Six Sigma Kinetic</div>
+<div class="hidden md:flex items-center gap-6">
+<a class="text-slate-600 dark:text-slate-400 hover:text-[#a900a9] text-sm transition-all" href="#">Define</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-[#a900a9] text-sm transition-all" href="#">Measure</a>
+<a class="text-[#a900a9] dark:text-[#f0ebff] border-b-2 border-[#a900a9] font-bold pb-1 text-sm" href="#">Analyze</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-[#a900a9] text-sm transition-all" href="#">Improve</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-slate-400 hover:text-primary cursor-pointer transition-colors">notifications</span>
+<span class="material-symbols-outlined text-slate-400 hover:text-primary cursor-pointer transition-colors">help_outline</span>
+</div>
+<button class="bg-surface-container-highest text-on-surface px-4 py-1.5 rounded-lg text-xs font-semibold hover:bg-surface-dim transition-colors">Export Report</button>
+<button class="kinetic-gradient text-white px-4 py-1.5 rounded-lg text-xs font-bold shadow-sm active:opacity-90">Deploy Project</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-primary/20">
+<img alt="User Profile" data-alt="professional corporate headshot of a project manager with a confident and friendly expression against a clean office background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYwUbTn5PXz3SO_x8rK03CicMgq1PCOIawBDjJvTkPAtiUrk7K9OeAtt5HCu2mqlv-kf8AAhsgCfeQnIiSDC2fowLjD_uv5dCs4l_l4Fh4HdGqENH2fuohcxn_9pNrJw5lFgUA9cBj9Xldhzdw6u0TIaPYfDNhKUnDG1nmPTQ8lEFCduFRgy95zX3WkOOlEs5IAQF4SIfCZ9BxJx3f3m3jeAnp4wY9290rQjVDwZyrIj0tSf8n5OMNIq3kEdKBtXlouQt4mLef5ZM"/>
+</div>
+</div>
+</header>
+<!-- Content Canvas -->
+<section class="pt-20 px-8 pb-12">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row justify-between items-end mb-8 gap-4">
+<div>
+<h2 class="text-3xl font-extrabold tracking-tight text-on-surface mb-1">Analyze: <span class="text-primary">Defect Root Cause</span></h2>
+<p class="text-sm text-on-surface-variant font-medium">Phase 3: Statistical distribution and variation analysis for Project Sigma-Delta.</p>
+</div>
+<div class="flex items-center bg-surface-container-low p-1.5 rounded-xl">
+<button class="px-4 py-2 bg-white rounded-lg text-xs font-bold text-primary shadow-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">show_chart</span>
+                        Control Chart
+                    </button>
+<button class="px-4 py-2 hover:bg-surface-container-high rounded-lg text-xs font-medium text-on-surface-variant flex items-center gap-2 transition-all">
+<span class="material-symbols-outlined text-sm">candlestick_chart</span>
+                        Box Plot
+                    </button>
+<button class="px-4 py-2 hover:bg-surface-container-high rounded-lg text-xs font-medium text-on-surface-variant flex items-center gap-2 transition-all">
+<span class="material-symbols-outlined text-sm">bar_chart_4_bars</span>
+                        Histogram
+                    </button>
+</div>
+</div>
+<!-- Dashboard Grid -->
+<div class="grid grid-cols-12 gap-6">
+<!-- Main Visual Container (The Chart) -->
+<div class="col-span-12 lg:col-span-8 bg-surface-container rounded-2xl p-6 relative overflow-hidden">
+<div class="flex justify-between items-center mb-6">
+<div class="flex items-center gap-4">
+<div class="relative">
+<label class="text-[10px] uppercase tracking-widest text-on-surface-variant/60 font-bold block mb-1 ml-1">Metric Primary</label>
+<div class="bg-surface-container-lowest px-4 py-2 rounded-lg flex items-center gap-3 cursor-pointer group border-b-2 border-outline-variant/30 hover:border-primary transition-colors">
+<span class="text-sm font-semibold">Cyle Time (ms)</span>
+<span class="material-symbols-outlined text-primary text-sm">expand_more</span>
+</div>
+</div>
+<div class="relative">
+<label class="text-[10px] uppercase tracking-widest text-on-surface-variant/60 font-bold block mb-1 ml-1">Grouping</label>
+<div class="bg-surface-container-lowest px-4 py-2 rounded-lg flex items-center gap-3 cursor-pointer group border-b-2 border-outline-variant/30 hover:border-primary transition-colors">
+<span class="text-sm font-semibold">Shift A vs Shift B</span>
+<span class="material-symbols-outlined text-primary text-sm">expand_more</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="mono text-[10px] bg-tertiary-fixed px-2 py-1 rounded text-on-tertiary-fixed font-bold">ALPHA: 0.05</span>
+<span class="mono text-[10px] bg-secondary-container/10 px-2 py-1 rounded text-secondary font-bold">N: 1,240</span>
+</div>
+</div>
+<!-- Mock Chart Visualization -->
+<div class="w-full h-80 bg-surface-container-lowest rounded-xl p-8 relative">
+<!-- Chart Grid Lines -->
+<div class="absolute inset-x-8 inset-y-8 flex flex-col justify-between pointer-events-none opacity-10">
+<div class="h-[1px] w-full bg-on-surface"></div>
+<div class="h-[1px] w-full bg-on-surface"></div>
+<div class="h-[1px] w-full bg-on-surface"></div>
+<div class="h-[1px] w-full bg-on-surface"></div>
+<div class="h-[1px] w-full bg-on-surface border-dashed border-error"></div>
+<div class="h-[1px] w-full bg-on-surface"></div>
+</div>
+<!-- Control Limits -->
+<div class="absolute left-10 top-1/2 -translate-y-1/2 w-full pr-20 flex flex-col justify-between h-[80%] pointer-events-none">
+<div class="w-full border-t border-error/40 flex justify-end">
+<span class="mono text-[9px] text-error font-bold mt-1">UCL: 185.2</span>
+</div>
+<div class="w-full border-t-2 border-primary/20 flex justify-end">
+<span class="mono text-[9px] text-primary font-bold mt-1">MEAN: 142.1</span>
+</div>
+<div class="w-full border-t border-error/40 flex justify-end">
+<span class="mono text-[9px] text-error font-bold mb-1">LCL: 98.9</span>
+</div>
+</div>
+<!-- Data Path (Simulated) -->
+<div class="relative w-full h-full flex items-center">
+<svg class="w-full h-48 overflow-visible" viewbox="0 0 1000 200">
+<path d="M0,100 L50,110 L100,85 L150,120 L200,95 L250,130 L300,100 L350,70 L400,160 L450,140 L500,110 L550,105 L600,125 L650,90 L700,45 L750,85 L800,110 L850,115 L900,100 L950,95 L1000,105" fill="none" stroke="#a900a9" stroke-width="2.5"></path>
+<circle cx="400" cy="160" fill="#ba1a1a" r="5"></circle>
+<circle cx="700" cy="45" fill="#ba1a1a" r="5"></circle>
+<!-- Points -->
+<circle cx="0" cy="100" fill="#a900a9" r="2.5"></circle>
+<circle cx="50" cy="110" fill="#a900a9" r="2.5"></circle>
+<circle cx="100" cy="85" fill="#a900a9" r="2.5"></circle>
+<circle cx="550" cy="105" fill="#a900a9" r="2.5"></circle>
+</svg>
+</div>
+<!-- Outlier Annotation -->
+<div class="absolute top-[20%] left-[68%] bg-error-container/80 backdrop-blur-sm p-2 rounded border border-error/20">
+<span class="text-[10px] text-on-error-container font-bold">OUTLIER DETECTED: SHIFT OVERLAP</span>
+</div>
+</div>
+</div>
+<!-- Side Data Density Panel -->
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-6">
+<!-- Statistical Summary Card -->
+<div class="bg-surface-container-lowest rounded-2xl p-6 shadow-[0px_12px_32px_rgba(26,24,52,0.04)]">
+<h3 class="font-headline font-bold text-sm mb-4 flex items-center justify-between">
+                            Process Capability (Cpk)
+                            <span class="material-symbols-outlined text-primary text-lg">verified</span>
+</h3>
+<div class="space-y-4">
+<div class="flex justify-between items-end">
+<div>
+<p class="text-[10px] text-on-surface-variant font-bold uppercase tracking-wider mb-0.5">Calculated Cpk</p>
+<p class="text-3xl font-black text-primary">1.24</p>
+</div>
+<div class="text-right">
+<p class="text-[10px] text-on-surface-variant font-bold uppercase tracking-wider mb-0.5">Defects (PPM)</p>
+<p class="text-xl font-bold text-on-surface">3,400</p>
+</div>
+</div>
+<div class="w-full bg-surface-container-low h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[72%] rounded-full"></div>
+</div>
+<p class="text-[11px] leading-relaxed text-on-surface-variant">Your process capability is within the 1.2-1.3 range. Potential for optimization in the cooling phase detected.</p>
+</div>
+</div>
+<!-- Hypothesis Testing Card -->
+<div class="bg-surface-container rounded-2xl p-6">
+<h3 class="font-headline font-bold text-sm mb-4">Hypothesis Testing</h3>
+<div class="space-y-3">
+<div class="p-3 bg-surface-container-lowest rounded-xl">
+<div class="flex justify-between items-center mb-1">
+<span class="text-[11px] font-bold">P-Value (Levene's)</span>
+<span class="mono text-[11px] font-bold text-secondary">0.024</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+<span class="text-[10px] font-medium opacity-70 italic">Reject Null: Variances differ</span>
+</div>
+</div>
+<div class="p-3 bg-surface-container-lowest rounded-xl">
+<div class="flex justify-between items-center mb-1">
+<span class="text-[11px] font-bold">T-Test (Equal Var)</span>
+<span class="mono text-[11px] font-bold text-primary">0.451</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="text-[10px] font-medium opacity-70 italic">Fail to Reject: Means are equal</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Secondary Visuals / Activity Ribbon Layout -->
+<div class="col-span-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Distribution Profile -->
+<div class="bg-surface-container-lowest rounded-2xl p-5 border border-outline-variant/10 relative">
+<!-- Activity Ribbon -->
+<div class="absolute left-0 top-6 w-1 h-12 bg-tertiary-fixed-dim rounded-r-full"></div>
+<div class="ml-2">
+<p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-1">Distribution Type</p>
+<h4 class="font-headline font-extrabold text-lg mb-4 text-on-surface">Normal (Gaussian)</h4>
+<div class="flex items-center justify-between">
+<div class="w-32 h-12 flex items-end gap-1">
+<div class="bg-surface-container-high w-3 h-4 rounded-t-sm"></div>
+<div class="bg-surface-container-high w-3 h-6 rounded-t-sm"></div>
+<div class="bg-primary w-3 h-10 rounded-t-sm"></div>
+<div class="bg-primary w-3 h-12 rounded-t-sm"></div>
+<div class="bg-primary w-3 h-9 rounded-t-sm"></div>
+<div class="bg-surface-container-high w-3 h-5 rounded-t-sm"></div>
+<div class="bg-surface-container-high w-3 h-3 rounded-t-sm"></div>
+</div>
+<div class="text-right">
+<p class="text-[9px] font-bold text-on-surface-variant/50">SKEWNESS</p>
+<p class="mono text-xs font-bold">0.12 (Low)</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Sigma Score -->
+<div class="bg-surface-container-lowest rounded-2xl p-5 border border-outline-variant/10 relative">
+<div class="absolute left-0 top-6 w-1 h-12 bg-primary rounded-r-full"></div>
+<div class="ml-2">
+<p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-1">Current Performance</p>
+<h4 class="font-headline font-extrabold text-lg mb-4 text-on-surface">3.82 Sigma</h4>
+<div class="flex items-center gap-4">
+<div class="flex-1 bg-surface-container-low h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[64%]"></div>
+</div>
+<span class="text-[10px] font-bold text-primary">Goal: 4.50</span>
+</div>
+</div>
+</div>
+<!-- Recommendation Engine -->
+<div class="bg-surface-container-lowest rounded-2xl p-5 border border-outline-variant/10 relative">
+<div class="absolute left-0 top-6 w-1 h-12 bg-secondary rounded-r-full"></div>
+<div class="ml-2">
+<p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-1">AI Recommendation</p>
+<p class="text-xs font-medium text-on-surface leading-snug">Focus on variation reduction in <span class="font-bold text-secondary">Nozzle Temp</span> settings to improve Cpk by <span class="font-bold text-primary">+0.15</span>.</p>
+<button class="mt-3 text-[10px] font-bold text-secondary flex items-center gap-1 hover:underline">
+                                START ANOVA TEST
+                                <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Correlation Matrix (High Density Table Style) -->
+<div class="col-span-12 bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm">
+<div class="px-6 py-4 border-b border-outline-variant/10 flex justify-between items-center">
+<h3 class="font-headline font-bold text-sm">Predictor Correlation Matrix</h3>
+<div class="flex gap-2">
+<span class="text-[10px] font-bold text-primary flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-primary"></span> High
+                            </span>
+<span class="text-[10px] font-bold text-on-surface-variant/40 flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-surface-container-high"></span> Low
+                            </span>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low/50">
+<th class="p-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">Variables</th>
+<th class="p-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-wider text-center">Cycle Time</th>
+<th class="p-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-wider text-center">Temp (C)</th>
+<th class="p-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-wider text-center">Pressure</th>
+<th class="p-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-wider text-center">Humidity</th>
+</tr>
+</thead>
+<tbody class="text-sm">
+<tr>
+<td class="p-4 font-bold border-b border-outline-variant/5">Cycle Time</td>
+<td class="p-4 text-center border-b border-outline-variant/5 bg-primary/20 mono font-bold">1.00</td>
+<td class="p-4 text-center border-b border-outline-variant/5 bg-primary/10 mono font-bold text-primary">0.82</td>
+<td class="p-4 text-center border-b border-outline-variant/5 bg-surface-container-low mono">-0.12</td>
+<td class="p-4 text-center border-b border-outline-variant/5 bg-surface-container-low mono">0.04</td>
+</tr>
+<tr>
+<td class="p-4 font-bold border-b border-outline-variant/5">Temp (C)</td>
+<td class="p-4 text-center border-b border-outline-variant/5 bg-primary/10 mono font-bold text-primary">0.82</td>
+<td class="p-4 text-center border-b border-outline-variant/5 bg-primary/20 mono font-bold">1.00</td>
+<td class="p-4 text-center border-b border-outline-variant/5 bg-surface-container-low mono">0.15</td>
+<td class="p-4 text-center border-b border-outline-variant/5 bg-surface-container-low mono">-0.22</td>
+</tr>
+<tr>
+<td class="p-4 font-bold">Pressure</td>
+<td class="p-4 text-center bg-surface-container-low mono">-0.12</td>
+<td class="p-4 text-center bg-surface-container-low mono">0.15</td>
+<td class="p-4 text-center bg-primary/20 mono font-bold">1.00</td>
+<td class="p-4 text-center bg-primary/5 mono font-bold text-primary/60">0.44</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- FAB for AI Chat (Contextual for Dashboard) -->
+<div class="fixed bottom-6 right-6 z-50">
+<button class="w-14 h-14 kinetic-gradient rounded-full shadow-2xl flex items-center justify-center text-white hover:scale-110 transition-transform active:scale-95 group relative">
+<span class="material-symbols-outlined text-2xl">auto_awesome</span>
+<!-- Tooltip -->
+<div class="absolute right-16 top-1/2 -translate-y-1/2 bg-surface-container-lowest text-on-surface px-3 py-1.5 rounded-lg text-xs font-bold shadow-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap border border-outline-variant/20">
+                Ask Lean Consultant
+            </div>
+</button>
+</div>
+</body></html>

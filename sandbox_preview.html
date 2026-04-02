@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Six Sigma Kinetic Preview</title>
+  <style>
+    :root {
+      --bg: #fcf8ff;
+      --sidebar: #f6f1ff;
+      --surface: #ffffff;
+      --surface-soft: #f0ebff;
+      --text: #1a1834;
+      --muted: #6f6478;
+      --fade: #8f7f8d;
+      --primary: #a900a9;
+      --secondary: #006fee;
+      --tertiary: #f6bf00;
+      --outline: rgba(220, 190, 212, 0.28);
+      --shadow: 0 18px 50px rgba(49, 31, 74, 0.07);
+      --gradient: linear-gradient(90deg, #a900a9 0%, #006fee 100%);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Plus Jakarta Sans", "Inter", Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(169, 0, 169, 0.08), transparent 28%),
+        radial-gradient(circle at top right, rgba(0, 111, 238, 0.08), transparent 26%),
+        var(--bg);
+    }
+
+    .app {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      background: var(--sidebar);
+      border-right: 1px solid var(--outline);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: var(--gradient);
+    }
+
+    .sidebar h1 {
+      margin: 0;
+      font-size: 1.15rem;
+    }
+
+    .sidebar p {
+      margin: 4px 0 0;
+      color: var(--primary);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .nav, .top-tabs {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .nav button,
+    .top-tabs button {
+      appearance: none;
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      border-radius: 14px;
+      font: inherit;
+    }
+
+    .nav button {
+      padding: 14px 16px;
+      text-align: left;
+      font-weight: 600;
+    }
+
+    .nav button.active {
+      background: var(--surface-soft);
+      color: var(--primary);
+    }
+
+    .assistant-card,
+    .card {
+      background: rgba(255,255,255,0.75);
+      border: 1px solid var(--outline);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .assistant-card {
+      margin-top: auto;
+      padding: 16px;
+    }
+
+    .main {
+      padding: 16px 20px 32px;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 16px;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      background: rgba(252, 248, 255, 0.86);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--outline);
+      border-radius: 24px;
+      padding: 16px 20px;
+      margin-bottom: 24px;
+    }
+
+    .logo {
+      font-size: 1.35rem;
+      font-weight: 900;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      white-space: nowrap;
+    }
+
+    .top-tabs {
+      flex-direction: row;
+      gap: 16px;
+    }
+
+    .top-tabs button {
+      padding: 12px 2px;
+      border-bottom: 2px solid transparent;
+      border-radius: 0;
+      font-weight: 600;
+    }
+
+    .top-tabs button.active {
+      color: var(--primary);
+      border-color: var(--primary);
+    }
+
+    .spacer { flex: 1; }
+
+    .btn {
+      border: 1px solid var(--outline);
+      background: #fff;
+      border-radius: 14px;
+      padding: 12px 16px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .btn.primary {
+      background: var(--gradient);
+      border: none;
+      color: #fff;
+    }
+
+    .hero {
+      margin-bottom: 24px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(169, 0, 169, 0.08);
+      color: var(--primary);
+      border-radius: 999px;
+      padding: 7px 12px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+
+    .hero h2 {
+      margin: 8px 0;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+    }
+
+    .hero p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 800px;
+      line-height: 1.6;
+    }
+
+    .card {
+      padding: 24px;
+    }
+
+    .card h3 {
+      margin: 0 0 6px;
+      font-size: 1.2rem;
+    }
+
+    .sub {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin: 0 0 18px;
+    }
+
+    .grid-12 {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .span-8 { grid-column: span 8; }
+    .span-9 { grid-column: span 9; }
+    .span-4 { grid-column: span 4; }
+    .span-3 { grid-column: span 3; }
+    .span-12 { grid-column: 1 / -1; }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .mini-grid.two {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .mini-card, .soft-panel {
+      background: var(--bg);
+      border: 1px solid var(--outline);
+      border-radius: 18px;
+      padding: 16px;
+    }
+
+    .kpi {
+      border-left: 4px solid var(--primary);
+      background: var(--surface);
+      border-radius: 18px;
+      padding: 18px;
+      border: 1px solid var(--outline);
+    }
+
+    .kpi.secondary { border-left-color: var(--secondary); }
+    .kpi.tertiary { border-left-color: var(--tertiary); }
+
+    .eyebrow {
+      color: var(--fade);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .big {
+      font-size: 2rem;
+      font-weight: 900;
+      margin: 0 0 4px;
+    }
+
+    .bars {
+      display: flex;
+      align-items: end;
+      gap: 18px;
+      height: 300px;
+      padding: 16px 8px 0;
+    }
+
+    .bar-wrap {
+      flex: 1;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+      align-items: center;
+      gap: 8px;
+      height: 100%;
+    }
+
+    .bar {
+      width: 100%;
+      border-radius: 16px 16px 6px 6px;
+      background: var(--gradient);
+      min-height: 36px;
+    }
+
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: 16px;
+    }
+
+    .table th,
+    .table td {
+      text-align: left;
+      padding: 14px 12px;
+      border-bottom: 1px solid var(--outline);
+      font-size: 0.92rem;
+    }
+
+    .table th {
+      color: var(--fade);
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .badge {
+      display: inline-block;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+
+    .badge.pass {
+      background: rgba(24, 160, 88, 0.12);
+      color: #157347;
+    }
+
+    .badge.fail {
+      background: rgba(186, 26, 26, 0.12);
+      color: #ba1a1a;
+    }
+
+    .chart {
+      position: relative;
+      background: var(--bg);
+      border: 1px solid var(--outline);
+      border-radius: 18px;
+      min-height: 320px;
+      padding: 24px;
+      overflow: hidden;
+    }
+
+    .grid-lines {
+      position: absolute;
+      inset: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      pointer-events: none;
+    }
+
+    .grid-lines span {
+      display: block;
+      height: 1px;
+      background: rgba(26,24,52,0.08);
+    }
+
+    .grid-lines span.alert {
+      background: rgba(186,26,26,0.35);
+    }
+
+    .points {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 12px;
+      height: 270px;
+    }
+
+    .point-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+      align-items: center;
+    }
+
+    .point-line {
+      width: 2px;
+      background: rgba(169, 0, 169, 0.2);
+    }
+
+    .point {
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      background: var(--primary);
+      box-shadow: 0 0 0 4px rgba(169, 0, 169, 0.10);
+      margin-bottom: 6px;
+    }
+
+    .point.high { background: var(--secondary); }
+
+    .cause-grid, .pilot-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .fishbone {
+      background: linear-gradient(180deg, rgba(240, 235, 255, 0.75), rgba(255, 255, 255, 0.85));
+      border-radius: 20px;
+      padding: 22px;
+      display: grid;
+      grid-template-columns: 1fr 260px 1fr;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .stack {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .focus {
+      background: var(--gradient);
+      color: #fff;
+      border-radius: 18px;
+      text-align: center;
+      padding: 24px 16px;
+      font-weight: 800;
+      box-shadow: 0 14px 30px rgba(169, 0, 169, 0.18);
+    }
+
+    .phase { display: none; }
+    .phase.active { display: block; }
+
+    @media (max-width: 1100px) {
+      .app { grid-template-columns: 1fr; }
+      .sidebar { position: relative; height: auto; min-height: auto; }
+      .grid-12 { grid-template-columns: 1fr; }
+      .span-8, .span-9, .span-4, .span-3, .span-12 { grid-column: auto; }
+      .mini-grid, .mini-grid.two, .cause-grid, .pilot-grid, .fishbone {
+        grid-template-columns: 1fr;
+      }
+      .topbar { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div>
+        <div class="brand-mark"></div>
+        <h1>Project Workspace</h1>
+        <p>Lean Six Sigma Dashboard</p>
+      </div>
+
+      <nav class="nav" id="sideNav">
+        <button class="active" data-phase="define">Define</button>
+        <button data-phase="measure">Measure</button>
+        <button data-phase="analyze">Analyze</button>
+        <button data-phase="improve">Improve</button>
+      </nav>
+
+      <div class="assistant-card">
+        <strong>AI Consultant Chat</strong>
+        <p style="color: var(--muted); line-height: 1.6; margin-bottom: 0;">Reserved space for LM Studio or model-backed guidance once the backend is connected.</p>
+      </div>
+    </aside>
+
+    <main class="main">
+      <div class="topbar">
+        <div class="logo">Six Sigma Kinetic</div>
+        <div class="top-tabs" id="topTabs">
+          <button class="active" data-phase="define">Define</button>
+          <button data-phase="measure">Measure</button>
+          <button data-phase="analyze">Analyze</button>
+          <button data-phase="improve">Improve</button>
+        </div>
+        <div class="spacer"></div>
+        <button class="btn">Export Report</button>
+        <button class="btn primary">Deploy Project</button>
+      </div>
+
+      <section class="hero">
+        <span class="chip" id="heroChip">DMAIC: Define</span>
+        <span class="chip" style="background: rgba(0,111,238,0.08); color: var(--secondary);">Updated April 2, 2026</span>
+        <h2>Six Sigma Kinetic Workspace</h2>
+        <p>A sandbox-safe preview of the Reflex app built from your Google Stitch front end. You can click through the four phases below.</p>
+      </section>
+
+      <section class="phase active" id="phase-define">
+        <div class="grid-12">
+          <div class="card span-8">
+            <h3>Project Charter</h3>
+            <p class="sub">Google Stitch define-phase layout translated into the live app structure.</p>
+            <div class="mini-grid">
+              <div class="mini-card">
+                <div class="eyebrow" style="color: var(--primary);">Business Case</div>
+                The North Distribution Center is running 14% slower than target, creating churn risk and roughly $1.2M in annual leakage.
+              </div>
+              <div class="mini-card">
+                <div class="eyebrow" style="color: var(--primary);">Problem Statement</div>
+                Order processing errors grew from 2.0% to 5.4% over six months, increasing support tickets and warehouse overtime.
+              </div>
+              <div class="mini-card">
+                <div class="eyebrow" style="color: var(--primary);">SMART Goal</div>
+                Reduce fulfillment defects below 1.5% by Q4 while protecting a 98% on-time delivery rate.
+              </div>
+            </div>
+            <div class="mini-grid two" style="margin-top: 16px;">
+              <div class="mini-card">
+                <div class="eyebrow">Team</div>
+                <div>Project Champion: Dana Brooks</div>
+                <div>Black Belt Lead: Marcus Chen</div>
+                <div>Process Owner: Elena Ruiz</div>
+                <div>Data Analyst: Priya Shah</div>
+              </div>
+              <div class="mini-card">
+                <div class="eyebrow">Scope</div>
+                <div class="chip" style="background: rgba(0,111,238,0.10); color: var(--secondary);">In scope: picking, staging, packing</div>
+                <div class="chip" style="background: rgba(246,191,0,0.14); color: #765a00;">Out of scope: carrier pricing, ERP rewrite</div>
+                <div class="chip">Financial target: $450k annual savings</div>
+              </div>
+            </div>
+          </div>
+          <div class="card span-4">
+            <h3>DMAIC Pulse</h3>
+            <p class="sub">Define-phase headline signals.</p>
+            <div class="kpi tertiary">
+              <div class="eyebrow">Priority</div>
+              <div class="big">High</div>
+              <div style="color: var(--muted);">Validated by leadership review</div>
+            </div>
+            <div class="kpi" style="margin-top: 16px;">
+              <div class="eyebrow">Project ID</div>
+              <div class="big">LSS-2026-082</div>
+              <div style="color: var(--muted);">Charter approved two hours ago</div>
+            </div>
+            <div class="kpi secondary" style="margin-top: 16px;">
+              <div class="eyebrow">Voice of Customer</div>
+              <div class="big">22%</div>
+              <div style="color: var(--muted);">Ticket spike driving urgency</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card span-12">
+          <h3>SIPOC Snapshot</h3>
+          <p class="sub">High-level value-chain map carried into the app.</p>
+          <div class="cause-grid" style="grid-template-columns: repeat(5, 1fr);">
+            <div class="mini-card"><div class="eyebrow">Suppliers</div>Carrier network, warehouse team, ERP platform</div>
+            <div class="mini-card"><div class="eyebrow">Inputs</div>Orders, pick lists, labor plan, cycle times</div>
+            <div class="mini-card"><div class="eyebrow">Process</div>Pick, stage, verify, pack, dispatch</div>
+            <div class="mini-card"><div class="eyebrow">Outputs</div>Shipped orders, exceptions, fulfillment status</div>
+            <div class="mini-card"><div class="eyebrow">Customers</div>Retail accounts, e-commerce buyers, support</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="phase" id="phase-measure">
+        <div class="grid-12">
+          <div class="card span-8">
+            <h3>Upload Measurement Data</h3>
+            <p class="sub">Stitch-style intake panel for CSV or XLSX baseline files.</p>
+            <div class="soft-panel" style="min-height: 270px; display: grid; place-items: center; border-style: dashed; border-width: 2px;">
+              <div style="text-align: center;">
+                <div style="font-size: 1.05rem; font-weight: 800; margin-bottom: 8px;">Drop a data file here</div>
+                <div style="color: var(--muted); margin-bottom: 20px;">Browse files or connect a cloud source once backend ingestion is wired.</div>
+                <button class="btn">Browse Files</button>
+                <button class="btn primary">Connect Cloud Source</button>
+              </div>
+            </div>
+          </div>
+          <div class="span-4">
+            <div class="kpi tertiary">
+              <div class="eyebrow">Process Stability</div>
+              <div class="big">84.2%</div>
+              <div style="color: var(--muted);">Baseline control band is acceptable</div>
+            </div>
+            <div class="kpi secondary" style="margin-top: 16px;">
+              <div class="eyebrow">Active Samples</div>
+              <div class="big">1,204</div>
+              <div style="color: var(--muted);">Latest import window across four production days</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid-12">
+          <div class="card span-9">
+            <h3>Pareto Analysis</h3>
+            <p class="sub">Vital few causes identified from the baseline.</p>
+            <div class="bars">
+              <div class="bar-wrap"><strong>542</strong><div class="bar" style="height: 100%;"></div><div style="color: var(--muted); font-size: .75rem;">Machine Calibration</div><div class="eyebrow" style="margin:0; color: var(--secondary);">42%</div></div>
+              <div class="bar-wrap"><strong>382</strong><div class="bar" style="height: 70%; opacity: .92;"></div><div style="color: var(--muted); font-size: .75rem;">Material Impurity</div><div class="eyebrow" style="margin:0; color: var(--secondary);">30%</div></div>
+              <div class="bar-wrap"><strong>241</strong><div class="bar" style="height: 45%; opacity: .82;"></div><div style="color: var(--muted); font-size: .75rem;">Operator Error</div><div class="eyebrow" style="margin:0; color: var(--secondary);">19%</div></div>
+              <div class="bar-wrap"><strong>120</strong><div class="bar" style="height: 24%; opacity: .74;"></div><div style="color: var(--muted); font-size: .75rem;">Temperature Drift</div><div class="eyebrow" style="margin:0; color: var(--secondary);">9%</div></div>
+              <div class="bar-wrap"><strong>48</strong><div class="bar" style="height: 12%; opacity: .62;"></div><div style="color: var(--muted); font-size: .75rem;">Other</div><div class="eyebrow" style="margin:0; color: var(--secondary);">4%</div></div>
+            </div>
+          </div>
+          <div class="card span-3">
+            <h3>AI Strategy Cue</h3>
+            <p class="sub">Design-matched summary card from Measure.</p>
+            <div class="chip">Target: Machine Calibration</div>
+            <p style="color: var(--muted); line-height: 1.7;">Focusing the next wave on calibration drift addresses the largest controllable defect bucket and should remove about 42% of observed failures.</p>
+            <button class="btn primary" style="width: 100%;">Run Deep Analysis</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Measurement Data Preview</h3>
+          <p class="sub">Recent rows shown in the front-end table treatment.</p>
+          <table class="table">
+            <thead>
+              <tr><th>Timestamp</th><th>Batch ID</th><th>Defect Type</th><th>Status</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>2026-03-30 14:22</td><td>BT-9902</td><td>Calibration Drift</td><td><span class="badge fail">Fail</span></td></tr>
+              <tr><td>2026-03-30 14:18</td><td>BT-9901</td><td>Material Purity</td><td><span class="badge pass">Pass</span></td></tr>
+              <tr><td>2026-03-30 14:07</td><td>BT-9897</td><td>Operator Setup</td><td><span class="badge fail">Fail</span></td></tr>
+              <tr><td>2026-03-30 13:54</td><td>BT-9892</td><td>Torque Check</td><td><span class="badge pass">Pass</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="phase" id="phase-analyze">
+        <div class="grid-12">
+          <div class="card span-8">
+            <h3>Control Chart</h3>
+            <p class="sub">Variation study styled from the Analyze-phase Stitch screen.</p>
+            <div class="chip" style="background: rgba(246,191,0,0.18); color: #765a00;">Alpha: 0.05</div>
+            <div class="chip" style="background: rgba(0,111,238,0.10); color: var(--secondary);">N: 1,240</div>
+            <div class="chart">
+              <div class="grid-lines">
+                <span class="alert"></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span class="alert"></span>
+              </div>
+              <div class="points">
+                <div class="point-col"><div class="point-line" style="height: 40px;"></div><div class="point"></div></div>
+                <div class="point-col"><div class="point-line" style="height: 48px;"></div><div class="point"></div></div>
+                <div class="point-col"><div class="point-line" style="height: 66px;"></div><div class="point"></div></div>
+                <div class="point-col"><div class="point-line" style="height: 56px;"></div><div class="point"></div></div>
+                <div class="point-col"><div class="point-line" style="height: 80px;"></div><div class="point"></div></div>
+                <div class="point-col"><div class="point-line" style="height: 100px;"></div><div class="point"></div></div>
+                <div class="point-col"><div class="point-line" style="height: 90px;"></div><div class="point"></div></div>
+                <div class="point-col"><div class="point-line" style="height: 108px;"></div><div class="point"></div></div>
+                <div class="point-col"><div class="point-line" style="height: 96px;"></div><div class="point"></div></div>
+                <div class="point-col"><div class="point-line" style="height: 124px;"></div><div class="point high"></div></div>
+                <div class="point-col"><div class="point-line" style="height: 102px;"></div><div class="point"></div></div>
+                <div class="point-col"><div class="point-line" style="height: 112px;"></div><div class="point high"></div></div>
+              </div>
+            </div>
+          </div>
+          <div class="card span-4">
+            <h3>Distribution Readout</h3>
+            <p class="sub">Companion metrics shown alongside the visual.</p>
+            <div class="kpi"><div class="eyebrow">Mean</div><div class="big">142.1 ms</div><div style="color: var(--muted);">Centerline remains above desired state</div></div>
+            <div class="kpi" style="margin-top: 16px; border-left-color: #ba1a1a;"><div class="eyebrow">UCL</div><div class="big">185.2</div><div style="color: var(--muted);">Two points approached the upper threshold</div></div>
+            <div class="kpi secondary" style="margin-top: 16px;"><div class="eyebrow">Signal</div><div class="big">Shift B</div><div style="color: var(--muted);">Primary separation factor in the sample</div></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Root Cause Frame</h3>
+          <p class="sub">Fishbone categories condensed into the analysis workspace.</p>
+          <div class="cause-grid">
+            <div class="mini-card"><div class="eyebrow" style="color: var(--primary);">People</div>Skill mismatch during Shift B handoff</div>
+            <div class="mini-card"><div class="eyebrow" style="color: var(--primary);">Methods</div>Legacy SOP skips verification checkpoint</div>
+            <div class="mini-card"><div class="eyebrow" style="color: var(--primary);">Machines</div>Calibration window drifts after 7 hours</div>
+            <div class="mini-card"><div class="eyebrow" style="color: var(--primary);">Materials</div>Raw stock variance above expected band</div>
+            <div class="mini-card"><div class="eyebrow" style="color: var(--primary);">Measurement</div>Gauge repeatability not yet validated</div>
+            <div class="mini-card"><div class="eyebrow" style="color: var(--primary);">Environment</div>Humidity spikes near staging zone</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="phase" id="phase-improve">
+        <div class="grid-12">
+          <div class="card span-8">
+            <h3>Improve Phase: Root Cause Elimination</h3>
+            <p class="sub">Fishbone-inspired execution area based on the Stitch screen.</p>
+            <div class="fishbone">
+              <div class="stack">
+                <div class="mini-card"><div class="eyebrow" style="color: var(--primary);">People</div>Cross-train operators and rotate high-fatigue tasks.</div>
+                <div class="mini-card"><div class="eyebrow" style="color: var(--primary);">Methods</div>Publish revised SOP with gated sign-off step.</div>
+              </div>
+              <div class="focus">Process Bottleneck</div>
+              <div class="stack">
+                <div class="mini-card"><div class="eyebrow" style="color: var(--secondary);">Machines</div>Add automated calibration trigger before drift threshold.</div>
+                <div class="mini-card"><div class="eyebrow" style="color: var(--secondary);">Materials</div>Tighten inbound quality checks on top two suppliers.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card span-4">
+            <h3>Pilot Queue</h3>
+            <p class="sub">Three candidate countermeasures ready for validation.</p>
+            <div class="mini-card" style="margin-bottom: 12px;"><strong style="color: var(--primary);">Pilot A</strong><div>Auto-calibration + revised checklist</div><div class="chip" style="background: rgba(0,111,238,0.10); color: var(--secondary);">Projected defect reduction: 31%</div></div>
+            <div class="mini-card" style="margin-bottom: 12px;"><strong style="color: var(--primary);">Pilot B</strong><div>Supplier lot quarantine workflow</div><div class="chip" style="background: rgba(0,111,238,0.10); color: var(--secondary);">Projected defect reduction: 18%</div></div>
+            <div class="mini-card"><strong style="color: var(--primary);">Pilot C</strong><div>Shift handoff scorecard</div><div class="chip" style="background: rgba(0,111,238,0.10); color: var(--secondary);">Projected defect reduction: 12%</div></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Execution Guidance</h3>
+          <p class="sub">Front-end section ready for future backend hooks.</p>
+          <p style="color: var(--muted); line-height: 1.7;">This preview focuses on the stitched interface shell and phase navigation. The next backend step is connecting uploads, project persistence, and AI recommendations to your chosen data and model endpoints.</p>
+          <button class="btn">Export Report</button>
+          <button class="btn primary">Deploy Project</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const buttons = document.querySelectorAll("[data-phase]");
+    const phases = document.querySelectorAll(".phase");
+    const heroChip = document.getElementById("heroChip");
+
+    function activatePhase(phase) {
+      buttons.forEach((button) => {
+        button.classList.toggle("active", button.dataset.phase === phase);
+      });
+      phases.forEach((panel) => {
+        panel.classList.toggle("active", panel.id === `phase-${phase}`);
+      });
+      heroChip.textContent = `DMAIC: ${phase.charAt(0).toUpperCase()}${phase.slice(1)}`;
+    }
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => activatePhase(button.dataset.phase));
+    });
+  </script>
+</body>
+</html>
